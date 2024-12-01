@@ -18,9 +18,14 @@ export async function login(formData: FormData) {
   const { error } = await supabase.auth.signInWithPassword(data)
 
   if (error) {
-    redirect("/error")
+    redirect("/login?message=Missing Email or Password")
   }
 
   revalidatePath("/", "layout")
   redirect("/")
+}
+
+export const signout = async () => {
+  const supabase = await createClient()
+  supabase.auth.signOut()
 }
