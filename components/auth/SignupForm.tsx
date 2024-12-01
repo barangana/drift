@@ -21,8 +21,6 @@ const Signup: React.FC = () => {
     password: "",
   })
 
-  errors?.map((error) => console.log(error))
-
   return (
     <div className='bg-black grid place-items-center h-screen'>
       <div>
