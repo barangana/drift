@@ -3,7 +3,10 @@
 import { signup } from "@/app/(auth)/signup/RegisterActions"
 import Input from "@/components/Input"
 import Link from "next/link"
+import { useSearchParams } from "next/navigation"
 import React, { useState } from "react"
+
+// TODO: Find a better key for the unordered list
 
 interface FormData {
   email: string
@@ -11,10 +14,14 @@ interface FormData {
 }
 
 const Signup: React.FC = () => {
+  const searchParams = useSearchParams()
+  const errors = searchParams.get("errors")?.split(",")
   const [formInfo, setFormInfo] = useState<FormData>({
     email: "",
     password: "",
   })
+
+  errors?.map((error) => console.log(error))
 
   return (
     <div className='bg-black grid place-items-center h-screen'>
@@ -39,11 +46,16 @@ const Signup: React.FC = () => {
             }
           />
           <button
-            className='bg-white w-96 text-black rounded font-medium h-10'
+            className='bg-white w-96 text-black rounded-md font-medium h-10'
             formAction={signup}
           >
             Sign up
           </button>
+          <ul className='m-4 list-disc'>
+            {errors?.map((error, i) => (
+              <li key={error[i]}>{error}</li>
+            ))}
+          </ul>
         </form>
         <div className='text-white text-sm'>
           Already have an account?

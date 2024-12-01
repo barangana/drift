@@ -3,6 +3,7 @@
 import { login } from "@/app/(auth)/login/LoginActions"
 import Input from "@/components/Input"
 import Link from "next/link"
+import { useSearchParams } from "next/navigation"
 import React, { useState } from "react"
 
 interface FormData {
@@ -11,6 +12,8 @@ interface FormData {
 }
 
 const LoginForm: React.FC = () => {
+  const searchParams = useSearchParams()
+  const errors = searchParams.get("errors")?.split(",")
   const [formInfo, setFormInfo] = useState<FormData>({
     email: "",
     password: "",
@@ -23,7 +26,9 @@ const LoginForm: React.FC = () => {
         <form className='my-8 w-96'>
           <Input
             id='email'
+            value={formInfo.email}
             name='email'
+            type='email'
             placeholder='Email Address'
             onChange={(e) =>
               setFormInfo({ ...formInfo, email: e.target.value })
@@ -31,6 +36,7 @@ const LoginForm: React.FC = () => {
           />
           <Input
             id='password'
+            value={formInfo.password}
             name='password'
             placeholder='Password'
             type='password'
@@ -39,11 +45,16 @@ const LoginForm: React.FC = () => {
             }
           />
           <button
-            className='bg-white w-96 text-black rounded font-medium h-10'
+            className='bg-white w-96 text-black rounded-md font-medium h-10'
             formAction={login}
           >
-            Sign in
+            Log in
           </button>
+          <ul className='m-4 list-disc'>
+            {errors?.map((error, i) => (
+              <li key={error[i]}>{error}</li>
+            ))}
+          </ul>
         </form>
         <div className='text-white text-sm'>
           Don't have an account yet?
