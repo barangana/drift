@@ -57,8 +57,10 @@ const LoginForm: React.FC = () => {
           </ul>
         </form>
         <div className='text-white text-sm'>
-          Don't have an account yet?
-          <Link href='/signup'> Sign up</Link>
+          Don't have an account yet? {""}
+          <Link href='/signup' className='font-bold underline'>
+            Sign up
+          </Link>
         </div>
       </div>
     </div>

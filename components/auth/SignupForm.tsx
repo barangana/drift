@@ -56,8 +56,10 @@ const Signup: React.FC = () => {
           </ul>
         </form>
         <div className='text-white text-sm'>
-          Already have an account?
-          <Link href='/login'> Login</Link>
+          Already have an account? {""}
+          <Link href='/login' className='font-bold underline'>
+            Login
+          </Link>
         </div>
       </div>
     </div>
