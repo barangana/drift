@@ -1,25 +1,32 @@
 import React from "react"
 import Card from "./Card"
+import { createClient } from "@/utils/supabase/server"
+import { Goals } from "@/utils/types/types"
 
-const List = () => {
+const List = async () => {
+  const supabase = await createClient()
+
+  const { data: goals, error } = await supabase.from("goals").select("*")
+  console.log(goals)
+
+  if (error) {
+    console.log(error)
+  }
+
   return (
-    <div className='flex flex-col'>
-      <Card
-        title='test title'
-        description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur faucibus turpis eu volutpat fringilla. Quisque vestibulum et augue quis maximus. Proin id nulla tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras vitae faucibus ligula. Cras nibh erat, varius vel massa ut, tempor placerat nibh. Sed congue fermentum lectus, vel hendrerit enim suscipit eget. Proin id hendrerit eros. Quisque posuere dui et turpis vestibulum, ac tempus lorem hendrerit. '
-      />
-      <Card
-        title='test title'
-        description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur faucibus turpis eu volutpat fringilla. Quisque vestibulum et augue quis maximus. Proin id nulla tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras vitae faucibus ligula. Cras nibh erat, varius vel massa ut, tempor placerat nibh. Sed congue fermentum lectus, vel hendrerit enim suscipit eget. Proin id hendrerit eros. Quisque posuere dui et turpis vestibulum, ac tempus lorem hendrerit. '
-      />
-      <Card
-        title='test title'
-        description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur faucibus turpis eu volutpat fringilla. Quisque vestibulum et augue quis maximus. Proin id nulla tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras vitae faucibus ligula. Cras nibh erat, varius vel massa ut, tempor placerat nibh. Sed congue fermentum lectus, vel hendrerit enim suscipit eget. Proin id hendrerit eros. Quisque posuere dui et turpis vestibulum, ac tempus lorem hendrerit. '
-      />
-      <Card
-        title='test title'
-        description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur faucibus turpis eu volutpat fringilla. Quisque vestibulum et augue quis maximus. Proin id nulla tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras vitae faucibus ligula. Cras nibh erat, varius vel massa ut, tempor placerat nibh. Sed congue fermentum lectus, vel hendrerit enim suscipit eget. Proin id hendrerit eros. Quisque posuere dui et turpis vestibulum, ac tempus lorem hendrerit. '
-      />
+    <div>
+      <div className='flex flex-col items-center'>
+        <h2 className='inline-flex items-start'>Goals</h2>
+        <button>Add goal</button>
+        {goals?.map((goal: Goals) => (
+          <Card
+            key={goal.goal_id}
+            category={goal.category || ""}
+            title={goal.goal || ""}
+            description={goal.description || ""}
+          />
+        ))}
+      </div>
     </div>
   )
 }
