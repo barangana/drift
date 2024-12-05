@@ -1,9 +1,9 @@
-import List from "@/components/entries/List"
+import EntriesForm from "@/components/entries/EntriesForm"
 
 export default function Home() {
   return (
     <div>
-      <List />
+      <EntriesForm />
     </div>
   )
 }
