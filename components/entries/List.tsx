@@ -16,8 +16,6 @@ const List = async () => {
 
   return (
     <div className='flex flex-col items-center'>
-      <h2 className='inline-flex items-start'>Goals</h2>
-      <button>Add goal</button>
       <ClientList goals={goals} />
     </div>
   )

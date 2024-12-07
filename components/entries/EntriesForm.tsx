@@ -12,8 +12,6 @@ interface EntriesForm {
 // TODO: Create the update action
 
 const EntriesForm: React.FC<EntriesForm> = ({ goal, handleCancel }) => {
-  console.log('Goals from ClientList: ' + JSON.stringify(goal))
-
   // Checks if we are editing
   const isEditing = !!goal
 
