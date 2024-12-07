@@ -18,15 +18,6 @@ const List = async () => {
     <div className='flex flex-col items-center'>
       <h2 className='inline-flex items-start'>Goals</h2>
       <button>Add goal</button>
-      {/* {goals?.map((goal: Goals) => (
-        <Card
-          id={goal.goal_id}
-          key={goal.goal_id}
-          category={goal.category || ''}
-          title={goal.goal || ''}
-          description={goal.description || ''}
-        />
-      ))} */}
       <ClientList goals={goals} />
     </div>
   )

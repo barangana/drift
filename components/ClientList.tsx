@@ -25,7 +25,14 @@ const ClientList: React.FC<ClientListProps> = ({ goals }) => {
 
   return (
     <div className='flex flex-col items center'>
-      {isEditing ? <EntriesForm handleCancel={handleCancel} /> : ''}
+      {isEditing ? (
+        <EntriesForm
+          goal={currentGoal || undefined}
+          handleCancel={handleCancel}
+        />
+      ) : (
+        ''
+      )}
       {goals.map((goal) => (
         <Card
           id={goal.goal_id}
