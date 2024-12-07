@@ -1,12 +1,18 @@
-import React, { ReactNode } from "react"
+import React, { MouseEventHandler, ReactNode } from 'react'
 
 interface ButtonProps {
   children: ReactNode
+  formAction?: string | ((formData: FormData) => void | Promise<void>)
+  onClick?: MouseEventHandler<HTMLElement>
 }
 
-const Button: React.FC<ButtonProps> = ({ children }) => {
+const Button: React.FC<ButtonProps> = ({ children, formAction, onClick }) => {
   return (
-    <button className='bg-black hover:bg-slate-900 font-semibold text-sm p-2 rounded-md'>
+    <button
+      className='bg-black hover:bg-slate-900 font-semibold text-sm p-2 rounded-md'
+      formAction={formAction}
+      onClick={onClick}
+    >
       {children}
     </button>
   )
