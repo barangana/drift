@@ -17,7 +17,7 @@ export const addGoal = async (formData: FormData) => {
     console.log(userError)
   }
 
-  const { error: goalsError } = await supabase.from('goals').insert([
+  const { error } = await supabase.from('goals').insert([
     {
       goal: data.goal,
       category: data.category,
@@ -27,8 +27,8 @@ export const addGoal = async (formData: FormData) => {
     },
   ])
 
-  if (goalsError) {
-    console.log('An error occurred while adding goals: ' + goalsError)
+  if (error) {
+    console.log('An error occurred while adding goals: ' + { ...error })
   }
 
   revalidatePath('/')

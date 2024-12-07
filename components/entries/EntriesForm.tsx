@@ -1,8 +1,14 @@
 import React from 'react'
 import Button from '../Button'
 import { addGoal } from './GoalsActions'
+import { Goals } from '@/utils/types/types'
 
-const EntriesForm = () => {
+interface EntriesForm {
+  goal?: Goals
+  handleCancel: () => void
+}
+
+const EntriesForm: React.FC<EntriesForm> = () => {
   return (
     <div className='max-w-xl p-4 my-4 bg-white border border-gray-200 rounded-lg'>
       <form>
@@ -21,7 +27,7 @@ const EntriesForm = () => {
         <textarea
           name='description'
           placeholder='Description'
-          className='pt-2 resize-none h-full w-full'
+          className='pt-2 resize-none h-full w-full text-black'
         />
         <div className='grid justify-items-end pt-2'>
           <div className='flex space-x-2'>

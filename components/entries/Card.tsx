@@ -9,15 +9,20 @@ interface CardProps {
   title: string
   description: string
   category?: string
-  input?: string[]
+  onEdit?: () => void
 }
 
 // TODO: Cards still need to be worked on but they serve as a way to display data pulled from the DB for now.
 // TODO: Add tags
 // TODO: Add colorizing to categorize whether they did good, medium or meh
-// TODO: Add button edit
 
-const Card: React.FC<CardProps> = ({ id, title, description, category }) => {
+const Card: React.FC<CardProps> = ({
+  id,
+  title,
+  description,
+  category,
+  onEdit,
+}) => {
   const clickDeleteHandler = async () => {
     await deleteGoal(id)
   }
@@ -29,7 +34,7 @@ const Card: React.FC<CardProps> = ({ id, title, description, category }) => {
       <div className='text-black'>{description}</div>
       <div className='grid justify-items-end pt-2'>
         <div className='flex space-x-2'>
-          {/* <Button formAction={async () => await deleteGoal(id)}>Delete</Button> */}
+          <Button onClick={onEdit}>Edit</Button>
           <Button
             onClick={() => {
               clickDeleteHandler()
