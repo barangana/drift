@@ -33,15 +33,17 @@ const ClientList: React.FC<ClientListProps> = ({ goals }) => {
   return (
     <div className='flex flex-col items center'>
       <div className='inline-flex items-start flex-col'>
-        <h2>Goals</h2>
+        <h2 className='font-bold text-3xl my-6'>Goals</h2>
         <Button onClick={handleCreate}>Add goal</Button>
       </div>
 
-      {isEditing || isCreating ? (
+      {isEditing ? (
         <EntriesForm
           goal={currentGoal || undefined}
           handleCancel={handleCancel}
         />
+      ) : isCreating ? (
+        <EntriesForm goal={undefined} handleCancel={handleCancel} />
       ) : (
         ''
       )}
@@ -49,6 +51,7 @@ const ClientList: React.FC<ClientListProps> = ({ goals }) => {
         <Card
           id={goal.goal_id}
           key={goal.goal_id}
+          category={goal.category || ''}
           title={goal.goal || ''}
           description={goal.description || ''}
           onEdit={() => handleEdit(goal)}

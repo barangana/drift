@@ -29,7 +29,7 @@ const Card: React.FC<CardProps> = ({
 
   return (
     <div className='block max-w-xl min-w-[36rem] px-4 pb-4 my-4 bg-white border border-gray-200 rounded-lg'>
-      <div className='text-black py-2 font-bold'>{title}</div>
+      <div className='text-black py-2 font-bold pt-6'>{title}</div>
       <div className=' text-black py-2 font-bold'>{category}</div>
       <div className='text-black'>{description}</div>
       <div className='grid justify-items-end pt-2'>
