@@ -9,6 +9,7 @@ const List = async () => {
   const { data: goals, error } = await supabase
     .from<'goals', Goals>('goals')
     .select('*')
+    .order('created_at', { ascending: false })
 
   if (error) {
     console.log(error)
@@ -16,7 +17,7 @@ const List = async () => {
 
   return (
     <div className='flex flex-col items-center'>
-      <ClientList goals={goals} />
+      <ClientList goals={goals ?? []} />
     </div>
   )
 }

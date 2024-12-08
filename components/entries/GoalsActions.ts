@@ -53,3 +53,34 @@ export const deleteGoal = async (goalId: string) => {
 
   revalidatePath('/')
 }
+
+export const updateGoal = async (formData: FormData, goalId: string) => {
+  const supabase = await createClient()
+
+  const data = {
+    goal: formData.get('goal') as string,
+    category: formData.get('category') as string,
+    description: formData.get('description') as string,
+  }
+
+  const {
+    data: { user },
+    error,
+  } = await supabase.auth.getUser()
+
+  if (!user || error) {
+    console.log('User is not logged in: ' + error)
+  }
+
+  const { error: updateError } = await supabase
+    .from('goals')
+    .update({ goal: data.goal })
+    .eq('goal_id', goalId)
+    .eq('user_id', user?.id)
+
+  if (updateError) {
+    console.log('Error occurred while trying to update record: ' + updateError)
+  }
+
+  revalidatePath('/')
+}

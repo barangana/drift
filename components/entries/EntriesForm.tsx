@@ -1,23 +1,28 @@
 import React from 'react'
 import Button from '../Button'
-import { addGoal } from './GoalsActions'
+import { addGoal, updateGoal } from './GoalsActions'
 import { Goals } from '@/utils/types/types'
 
-interface EntriesForm {
+interface EntriesFormProps {
   goal?: Goals
   handleCancel: () => void
 }
 
-// TODO: Check if we are editing, then change the buttons to say edit and such
-// TODO: Create the update action
+// TODO: add form validation
 
-const EntriesForm: React.FC<EntriesForm> = ({ goal, handleCancel }) => {
+const EntriesForm: React.FC<EntriesFormProps> = ({ goal, handleCancel }) => {
   // Checks if we are editing
   const isEditing = !!goal
 
   return (
-    <div className='max-w-xl p-4 my-4 bg-white border border-gray-200 rounded-lg'>
-      <form>
+    <div className='min-w-[36rem] max-w-xl p-4 my-4 bg-white border border-gray-200 rounded-lg'>
+      <form
+        action={
+          isEditing
+            ? (formData) => updateGoal(formData, goal?.goal_id)
+            : addGoal
+        }
+      >
         <div className='flex flex-col'>
           <input
             name='goal'
@@ -40,9 +45,7 @@ const EntriesForm: React.FC<EntriesForm> = ({ goal, handleCancel }) => {
         />
         <div className='grid justify-items-end pt-2'>
           <div className='flex space-x-2'>
-            <Button formAction={addGoal}>
-              {isEditing ? 'Save' : 'Create'}
-            </Button>
+            <Button type='submit'>{isEditing ? 'Save' : 'Create'}</Button>
             <Button onClick={handleCancel}>Cancel</Button>
           </div>
         </div>
