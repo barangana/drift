@@ -5,18 +5,22 @@ import { Goals } from '@/utils/types/types'
 
 interface EntriesFormProps {
   goal?: Goals
-  handleCancel: () => void
+  handleCancelOrSubmit: () => void
 }
 
 // TODO: add form validation
 
-const EntriesForm: React.FC<EntriesFormProps> = ({ goal, handleCancel }) => {
+const EntriesForm: React.FC<EntriesFormProps> = ({
+  goal,
+  handleCancelOrSubmit,
+}) => {
   // Checks if we are editing
   const isEditing = !!goal
 
   return (
     <div className='min-w-[36rem] max-w-xl p-4 my-4 bg-white border border-gray-200 rounded-lg'>
       <form
+        onSubmit={handleCancelOrSubmit}
         action={
           isEditing
             ? (formData) => updateGoal(formData, goal?.goal_id)
@@ -46,7 +50,7 @@ const EntriesForm: React.FC<EntriesFormProps> = ({ goal, handleCancel }) => {
         <div className='grid justify-items-end pt-2'>
           <div className='flex space-x-2'>
             <Button type='submit'>{isEditing ? 'Save' : 'Create'}</Button>
-            <Button onClick={handleCancel}>Cancel</Button>
+            <Button onClick={handleCancelOrSubmit}>Cancel</Button>
           </div>
         </div>
       </form>
