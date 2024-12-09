@@ -24,7 +24,7 @@ const ClientList: React.FC<ClientListProps> = ({ goals }) => {
     setIsCreating(true)
   }
 
-  const handleCancel = () => {
+  const handleCancelOrSubmit = () => {
     setIsEditing(false)
     setIsCreating(false)
     setCurrentGoal(null)
@@ -40,10 +40,13 @@ const ClientList: React.FC<ClientListProps> = ({ goals }) => {
       {isEditing ? (
         <EntriesForm
           goal={currentGoal || undefined}
-          handleCancel={handleCancel}
+          handleCancelOrSubmit={handleCancelOrSubmit}
         />
       ) : isCreating ? (
-        <EntriesForm goal={undefined} handleCancel={handleCancel} />
+        <EntriesForm
+          goal={undefined}
+          handleCancelOrSubmit={handleCancelOrSubmit}
+        />
       ) : (
         ''
       )}
