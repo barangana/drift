@@ -4,7 +4,8 @@ interface ButtonProps {
   children: ReactNode
   formAction?: string | ((formData: FormData) => void | Promise<void>)
   onClick?: MouseEventHandler<HTMLElement>
-  type?: string
+  type?: 'submit'
+  disabled?: boolean
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -12,6 +13,7 @@ const Button: React.FC<ButtonProps> = ({
   formAction,
   onClick,
   type,
+  disabled,
 }) => {
   return (
     <button
@@ -19,6 +21,7 @@ const Button: React.FC<ButtonProps> = ({
       formAction={formAction}
       onClick={onClick}
       type={type}
+      disabled={disabled}
     >
       {children}
     </button>
