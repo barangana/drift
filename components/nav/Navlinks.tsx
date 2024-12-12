@@ -3,7 +3,7 @@ import React, { ReactNode } from 'react'
 
 interface NavlinksProps {
   children: ReactNode
-  href: URL
+  href: URL | string
 }
 
 const Navlinks: React.FC<NavlinksProps> = ({ children, href }) => {
