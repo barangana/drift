@@ -1,3 +1,6 @@
+'use client'
+
+import { signout } from '@/app/(auth)/login/LoginActions'
 import React from 'react'
 
 const Navbar = () => {
@@ -8,7 +11,7 @@ const Navbar = () => {
         <button>Home</button>
         <button>Categories</button>
         <button>Dailies</button>
-        <button>Signout</button>
+        <button onClick={async () => signout}>Signout</button>
       </div>
     </nav>
   )
