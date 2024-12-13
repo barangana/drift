@@ -17,7 +17,7 @@ const Button: React.FC<ButtonProps> = ({
 }) => {
   return (
     <button
-      className='w-24 bg-black hover:bg-slate-900 font-semibold text-sm p-2 rounded-md'
+      className='w-16 h-8 bg-black hover:bg-slate-900 font-semibold text-xs rounded-md'
       formAction={formAction}
       onClick={onClick}
       type={type}

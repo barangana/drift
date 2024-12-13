@@ -1,6 +1,6 @@
 import React from 'react'
 import { createClient } from '@/utils/supabase/server'
-import ClientList from '../ClientList'
+import ClientList from './ClientList'
 import { Goals } from '@/utils/types/types'
 
 const List = async () => {
