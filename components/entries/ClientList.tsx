@@ -2,9 +2,9 @@
 
 import { Goals } from '@/utils/types/types'
 import React, { useState } from 'react'
-import Card from './entries/Card'
-import EntriesForm from './entries/EntriesForm'
-import Button from './Button'
+import Card from './Card'
+import EntriesForm from './EntriesForm'
+import Button from '../Button'
 
 interface ClientListProps {
   goals: Goals[]
