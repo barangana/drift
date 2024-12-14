@@ -31,8 +31,8 @@ const ClientList: React.FC<ClientListProps> = ({ goals }) => {
   }
 
   return (
-    <div className='flex flex-col items center'>
-      <div className='inline-flex items-start flex-col'>
+    <div>
+      <div>
         <h2 className='font-bold text-3xl my-6'>Goals</h2>
         <Button onClick={handleCreate}>Add goal</Button>
       </div>
