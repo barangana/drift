@@ -1,10 +1,10 @@
-import DailiesList from '@/components/dailies/DailiesList'
+import ServerDailyList from '@/components/dailies/ServerDailyList'
 import React from 'react'
 
 const DailiesPage = () => {
   return (
     <div>
-      <DailiesList />
+      <ServerDailyList />
     </div>
   )
 }
