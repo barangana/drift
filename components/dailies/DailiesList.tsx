@@ -12,6 +12,7 @@ interface DailiesListProps {
 
 const DailiesList = ({ dailies }: DailiesListProps) => {
   const [isAdding, setIsAdding] = useState<boolean>(false)
+  const [currentDaily, setCurrentDaily] = useState<Dailies | null>(null)
 
   const handleAdd = () => {
     setIsAdding(true)
@@ -19,6 +20,7 @@ const DailiesList = ({ dailies }: DailiesListProps) => {
 
   const handleCancelOrSubmit = () => {
     setIsAdding(true)
+    setCurrentDaily(null)
   }
 
   return (

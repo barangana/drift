@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Button from '../Button'
 import { Dailies } from '@/utils/types/types'
+import { addDaily } from './dailiesActions'
 
 interface DailiesFormProps {
   dailies?: Dailies
@@ -25,7 +26,7 @@ const DailiesForm: React.FC<DailiesFormProps> = ({
 
   return (
     <div className='min-w-[36rem] max-w-xl p-4 my-4 bg-white border border-gray-200 rounded-lg'>
-      <form name='entry-form'>
+      <form name='entry-form' onSubmit={handleCancelOrSubmit} action={addDaily}>
         <div className='flex flex-col'>
           <input
             name='daily'
@@ -39,7 +40,6 @@ const DailiesForm: React.FC<DailiesFormProps> = ({
         </div>
         <textarea
           name='description'
-          required
           placeholder='Description'
           className='pt-2 resize-none h-full w-full text-black'
           onChange={(e) =>
