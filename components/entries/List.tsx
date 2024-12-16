@@ -6,10 +6,10 @@ import { Goals } from '@/utils/types/types'
 const List = async () => {
   const supabase = await createClient()
 
-  const { data: goals, error } = await supabase
+  const { data: goals, error } = (await supabase
     .from<'goals', Goals>('goals')
     .select('*')
-    .order('created_at', { ascending: false })
+    .order('created_at', { ascending: false })) as { data: Goals[] | null }
 
   if (error) {
     console.log(error)
