@@ -11,15 +11,22 @@ interface DailiesListProps {
 }
 
 const DailiesList = ({ dailies }: DailiesListProps) => {
+  const [isEditing, setIsEditing] = useState<boolean>(false)
   const [isAdding, setIsAdding] = useState<boolean>(false)
   const [currentDaily, setCurrentDaily] = useState<Dailies | null>(null)
+
+  const handleEdit = (daily: Dailies) => {
+    setIsEditing(true)
+    setCurrentDaily(daily)
+  }
 
   const handleAdd = () => {
     setIsAdding(true)
   }
 
   const handleCancelOrSubmit = () => {
-    setIsAdding(true)
+    setIsEditing(false)
+    setIsAdding(false)
     setCurrentDaily(null)
   }
 
@@ -29,7 +36,19 @@ const DailiesList = ({ dailies }: DailiesListProps) => {
         <h2 className='font-bold text-3xl my-6'>My dailies</h2>
         <Button onClick={handleAdd}>Add daily</Button>
       </div>
-      {isAdding && <DailiesForm handleCancelOrSubmit={handleCancelOrSubmit} />}
+      {isEditing ? (
+        <DailiesForm
+          dailies={currentDaily || undefined}
+          handleCancelOrSubmit={handleCancelOrSubmit}
+        />
+      ) : isAdding ? (
+        <DailiesForm
+          dailies={undefined}
+          handleCancelOrSubmit={handleCancelOrSubmit}
+        />
+      ) : (
+        ''
+      )}
       {dailies?.map((daily) => (
         <DailiesEntry key={daily.daily_id} daily={daily} />
       ))}

@@ -22,7 +22,6 @@ const DailiesForm: React.FC<DailiesFormProps> = ({
 
   // If they are empty, then the button to submit gets disabled
   const isInputEmpty = formData.daily.trim() !== ''
-  console.log(isInputEmpty)
 
   return (
     <div className='min-w-[36rem] max-w-xl p-4 my-4 bg-white border border-gray-200 rounded-lg'>
