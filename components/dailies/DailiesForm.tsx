@@ -8,10 +8,7 @@ interface DailiesFormProps {
   handleCancelOrSubmit: () => void
 }
 
-const DailiesForm: React.FC<DailiesFormProps> = ({
-  dailies,
-  handleCancelOrSubmit,
-}) => {
+const DailiesForm = ({ dailies, handleCancelOrSubmit }: DailiesFormProps) => {
   // Checks if we are editing
   const isEditing = !!dailies
 

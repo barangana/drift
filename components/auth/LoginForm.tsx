@@ -1,22 +1,22 @@
-"use client"
+'use client'
 
-import { login } from "@/app/(auth)/login/LoginActions"
-import Input from "@/components/Input"
-import Link from "next/link"
-import { useSearchParams } from "next/navigation"
-import React, { useState } from "react"
+import { login } from '@/app/(auth)/login/LoginActions'
+import Input from '@/components/Input'
+import Link from 'next/link'
+import { useSearchParams } from 'next/navigation'
+import React, { useState } from 'react'
 
 interface FormData {
   email: string
   password: string
 }
 
-const LoginForm: React.FC = () => {
+const LoginForm = () => {
   const searchParams = useSearchParams()
-  const errors = searchParams.get("errors")?.split(",")
+  const errors = searchParams.get('errors')?.split(',')
   const [formInfo, setFormInfo] = useState<FormData>({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   })
 
   return (
@@ -57,7 +57,7 @@ const LoginForm: React.FC = () => {
           </ul>
         </form>
         <div className='text-white text-sm'>
-          Don't have an account yet? {""}
+          Don't have an account yet? {''}
           <Link href='/signup' className='font-bold underline'>
             Sign up
           </Link>
