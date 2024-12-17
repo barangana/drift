@@ -10,7 +10,7 @@ interface ClientListProps {
   goals: Goals[]
 }
 
-const ClientList: React.FC<ClientListProps> = ({ goals }) => {
+const ClientList = ({ goals }: ClientListProps) => {
   const [isEditing, setIsEditing] = useState<boolean>(false)
   const [isCreating, setIsCreating] = useState<boolean>(false)
   const [currentGoal, setCurrentGoal] = useState<Goals | null>(null)
@@ -51,14 +51,7 @@ const ClientList: React.FC<ClientListProps> = ({ goals }) => {
         ''
       )}
       {goals.map((goal) => (
-        <Card
-          id={goal.goal_id}
-          key={goal.goal_id}
-          category={goal.category || ''}
-          title={goal.goal || ''}
-          description={goal.description || ''}
-          onEdit={() => handleEdit(goal)}
-        />
+        <Card key={goal.goal_id} goal={goal} onEdit={() => handleEdit(goal)} />
       ))}
     </div>
   )

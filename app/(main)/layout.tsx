@@ -6,7 +6,7 @@ interface AuthLayoutProps {
   children: ReactNode
 }
 
-const AuthLayout: React.FC<AuthLayoutProps> = ({ children }) => {
+const AuthLayout = ({ children }: AuthLayoutProps) => {
   return (
     <section>
       <Navbar />

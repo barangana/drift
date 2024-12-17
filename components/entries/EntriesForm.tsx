@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Button from '../Button'
-import { addGoal, updateGoal } from './GoalsActions'
 import { Goals } from '@/utils/types/types'
+import { addGoal, updateGoal } from './GoalsActions'
 
 interface EntriesFormProps {
   goal?: Goals
@@ -10,10 +10,7 @@ interface EntriesFormProps {
 
 // TODO: add form validation
 
-const EntriesForm: React.FC<EntriesFormProps> = ({
-  goal,
-  handleCancelOrSubmit,
-}) => {
+const EntriesForm = ({ goal, handleCancelOrSubmit }: EntriesFormProps) => {
   // Checks if we are editing
   const isEditing = !!goal
 
