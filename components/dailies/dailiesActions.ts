@@ -31,3 +31,54 @@ export const addDaily = async (formData: FormData) => {
 
   revalidatePath('/dailies')
 }
+
+export const deleteDaily = async (dailyId: string) => {
+  const supabase = await createClient()
+  const { data: userData, error: userError } = await supabase.auth.getUser()
+
+  if (!userData || userError) {
+    console.log('User is not logged in ' + userError)
+  }
+
+  const { error } = await supabase.from('dailies').delete().match({
+    user_id: userData.user?.id,
+    daily_id: dailyId,
+  })
+
+  if (error) {
+    console.log('Error while trying to delete daily: ', { ...error })
+  }
+
+  revalidatePath('/')
+}
+
+export const updateDaily = async (formData: FormData, dailyId: string) => {
+  const supabase = await createClient()
+
+  const data = {
+    goal: formData.get('goal') as string,
+    category: formData.get('category') as string,
+    description: formData.get('description') as string,
+  }
+
+  const {
+    data: { user },
+    error,
+  } = await supabase.auth.getUser()
+
+  if (!user || error) {
+    console.log('User is not logged in: ' + error)
+  }
+
+  const { error: updateError } = await supabase
+    .from('goals')
+    .update({ goal: data.goal })
+    .eq('daily_id', dailyId)
+    .eq('user_id', user?.id)
+
+  if (updateError) {
+    console.log('Error occurred while trying to update record: ' + updateError)
+  }
+
+  revalidatePath('/')
+}

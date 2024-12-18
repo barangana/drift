@@ -2,8 +2,8 @@
 
 import React from 'react'
 import Button from '../Button'
-import { deleteGoal } from './GoalsActions'
 import { Goals } from '@/utils/types/types'
+import { deleteGoal } from './goalsActions'
 
 interface CardProps {
   goal: Goals
