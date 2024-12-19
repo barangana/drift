@@ -7,7 +7,6 @@ interface DailiesEntry {
 }
 
 const DailiesEntry = ({ daily }: DailiesEntry) => {
-  console.log(daily)
   const clickCheckboxHandler = async () => {
     try {
       await deleteDaily(daily.daily_id)
