@@ -50,7 +50,11 @@ const DailiesList = ({ dailies }: DailiesListProps) => {
         ''
       )}
       {dailies?.map((daily) => (
-        <DailiesEntry key={daily.daily_id} daily={daily} />
+        <DailiesEntry
+          key={daily.daily_id}
+          daily={daily}
+          onEdit={() => handleEdit(daily)}
+        />
       ))}
     </div>
   )
