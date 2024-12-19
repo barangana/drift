@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Button from '../Button'
 import { Dailies } from '@/utils/types/types'
-import { addDaily } from './dailiesActions'
+import { addDaily, updateDaily } from './dailiesActions'
 
 interface DailiesFormProps {
   dailies?: Dailies
@@ -18,15 +18,24 @@ const DailiesForm = ({ dailies, handleCancelOrSubmit }: DailiesFormProps) => {
   })
 
   // If they are empty, then the button to submit gets disabled
-  const isInputEmpty = formData.daily.trim() !== ''
+  const isInputEmpty = formData.daily.trim() === ''
 
   return (
     <div className='min-w-[36rem] max-w-xl p-4 my-4 bg-white border border-gray-200 rounded-lg'>
-      <form name='entry-form' onSubmit={handleCancelOrSubmit} action={addDaily}>
+      <form
+        name='entry-form'
+        onSubmit={handleCancelOrSubmit}
+        action={
+          isEditing
+            ? (formData) => updateDaily(formData, dailies.daily_id)
+            : addDaily
+        }
+      >
         <div className='flex flex-col'>
           <input
             name='daily'
             required
+            defaultValue={dailies?.title || ''}
             placeholder='Set the daily you want to accomplish'
             className='py-2 outline-none text-black'
             onChange={(e) =>
@@ -37,6 +46,7 @@ const DailiesForm = ({ dailies, handleCancelOrSubmit }: DailiesFormProps) => {
         <textarea
           name='description'
           placeholder='Description'
+          defaultValue={dailies?.description || ''}
           className='pt-2 resize-none h-full w-full text-black'
           onChange={(e) =>
             setFormData({ ...formData, description: e.target.value })

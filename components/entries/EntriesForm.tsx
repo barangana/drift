@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Button from '../Button'
 import { Goals } from '@/utils/types/types'
-import { addGoal, updateGoal } from './GoalsActions'
+import { addGoal, updateGoal } from './goalsActions'
 
 interface EntriesFormProps {
   goal?: Goals
@@ -22,7 +22,7 @@ const EntriesForm = ({ goal, handleCancelOrSubmit }: EntriesFormProps) => {
 
   // If they are empty, then the button to submit gets disabled
   const isInputEmpty =
-    formData.goal.trim() !== '' && formData.description.trim() !== ''
+    formData.goal.trim() === '' && formData.description.trim() === ''
 
   return (
     <div className='min-w-[36rem] max-w-xl p-4 my-4 bg-white border border-gray-200 rounded-lg'>
@@ -63,9 +63,7 @@ const EntriesForm = ({ goal, handleCancelOrSubmit }: EntriesFormProps) => {
         />
         <div className='grid justify-items-end pt-2'>
           <div className='flex space-x-2'>
-            <Button type='submit' disabled={!isInputEmpty}>
-              {isEditing ? 'Save' : 'Create'}
-            </Button>
+            <Button type='submit'>{isEditing ? 'Save' : 'Create'}</Button>
             <Button onClick={handleCancelOrSubmit}>Cancel</Button>
           </div>
         </div>
