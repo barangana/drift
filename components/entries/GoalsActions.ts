@@ -74,7 +74,11 @@ export const updateGoal = async (formData: FormData, goalId: string) => {
 
   const { error: updateError } = await supabase
     .from('goals')
-    .update({ goal: data.goal })
+    .update({
+      goal: data.goal,
+      category: data.category,
+      description: data.description,
+    })
     .eq('goal_id', goalId)
     .eq('user_id', user?.id)
 

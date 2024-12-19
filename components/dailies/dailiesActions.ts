@@ -56,10 +56,11 @@ export const updateDaily = async (formData: FormData, dailyId: string) => {
   const supabase = await createClient()
 
   const data = {
-    goal: formData.get('goal') as string,
-    category: formData.get('category') as string,
+    daily: formData.get('daily') as string,
     description: formData.get('description') as string,
   }
+
+  console.log(data)
 
   const {
     data: { user },
@@ -71,13 +72,16 @@ export const updateDaily = async (formData: FormData, dailyId: string) => {
   }
 
   const { error: updateError } = await supabase
-    .from('goals')
-    .update({ goal: data.goal })
+    .from('dailies')
+    .update({ title: data.daily, description: data.description })
     .eq('daily_id', dailyId)
     .eq('user_id', user?.id)
 
   if (updateError) {
-    console.log('Error occurred while trying to update record: ' + updateError)
+    console.log(
+      'Error occurred while trying to update record: ' +
+        JSON.stringify(updateError)
+    )
   }
 
   revalidatePath('/')
