@@ -2,53 +2,44 @@
 
 import React, { useState } from 'react'
 import Button from '../Button'
-import { Dailies } from '@/utils/types/types'
-import { addDaily, updateDaily } from './dailiesActions'
+import { Habits } from '@/utils/types/types'
 
-interface DailiesFormProps {
-  dailies?: Dailies
+interface HabitsFormProps {
+  habits?: Habits
   handleCancelOrSubmit?: () => void
 }
 
-const DailiesForm = ({ dailies, handleCancelOrSubmit }: DailiesFormProps) => {
+const HabitsForm = ({ habits, handleCancelOrSubmit }: HabitsFormProps) => {
   // Checks if we are editing
-  const isEditing = !!dailies
+  const isEditing = !!habits
 
   const [formData, setFormData] = useState({
-    daily: '',
+    habit: '',
     description: '',
   })
 
   // If they are empty, then the button to submit gets disabled
-  const isInputEmpty = formData.daily.trim() === ''
+  const isInputEmpty = formData.habit.trim() === ''
 
   return (
     <div className='min-w-[36rem] max-w-xl p-4 my-4 bg-white border border-gray-200 rounded-lg'>
-      <form
-        name='entry-form'
-        onSubmit={handleCancelOrSubmit}
-        action={
-          isEditing
-            ? (formData) => updateDaily(formData, dailies.daily_id)
-            : addDaily
-        }
-      >
+      <form name='entry-form' onSubmit={handleCancelOrSubmit}>
         <div className='flex flex-col'>
           <input
-            name='daily'
+            name='habit'
             required
-            defaultValue={dailies?.title || ''}
-            placeholder='Set the daily you want to accomplish'
+            defaultValue={habits?.habits || ''}
+            placeholder='Set the habit you want to track'
             className='py-2 outline-none text-black'
             onChange={(e) =>
-              setFormData({ ...formData, daily: e.target.value })
+              setFormData({ ...formData, habit: e.target.value })
             }
           />
         </div>
         <textarea
           name='description'
           placeholder='Description'
-          defaultValue={dailies?.description || ''}
+          defaultValue={habits?.description || ''}
           className='pt-2 resize-none h-full w-full text-black'
           onChange={(e) =>
             setFormData({ ...formData, description: e.target.value })
@@ -67,4 +58,4 @@ const DailiesForm = ({ dailies, handleCancelOrSubmit }: DailiesFormProps) => {
   )
 }
 
-export default DailiesForm
+export default HabitsForm

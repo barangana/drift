@@ -12,8 +12,9 @@ const Navbar = () => {
         Drift
       </Link>
       <div className='flex items-center justify-start gap-6 pl-20'>
-        <Navlinks href='/categories'>Categories</Navlinks>
+        {/* <Navlinks href='/categories'>Categories</Navlinks> */}
         <Navlinks href='/dailies'>Dailies</Navlinks>
+        <Navlinks href='/habits'>Habits</Navlinks>
         <button onClick={async () => signout()}>Signout</button>
       </div>
     </nav>

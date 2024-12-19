@@ -106,27 +106,30 @@ export type Database = {
       }
       habits: {
         Row: {
-          check_in: number | null
           created_at: string
+          days_checkedin: number | null
           description: string | null
           habits: string | null
           habits_id: string
+          streak: number | null
           user_id: string | null
         }
         Insert: {
-          check_in?: number | null
           created_at?: string
+          days_checkedin?: number | null
           description?: string | null
           habits?: string | null
           habits_id?: string
+          streak?: number | null
           user_id?: string | null
         }
         Update: {
-          check_in?: number | null
           created_at?: string
+          days_checkedin?: number | null
           description?: string | null
           habits?: string | null
           habits_id?: string
+          streak?: number | null
           user_id?: string | null
         }
         Relationships: [
