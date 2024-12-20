@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 import Button from '../Button'
 import { Habits } from '@/utils/types/types'
+import { addHabits } from './habitsActions'
 
 interface HabitsFormProps {
   habits?: Habits
@@ -23,7 +24,11 @@ const HabitsForm = ({ habits, handleCancelOrSubmit }: HabitsFormProps) => {
 
   return (
     <div className='min-w-[36rem] max-w-xl p-4 my-4 bg-white border border-gray-200 rounded-lg'>
-      <form name='entry-form' onSubmit={handleCancelOrSubmit}>
+      <form
+        name='entry-form'
+        onSubmit={handleCancelOrSubmit}
+        action={addHabits}
+      >
         <div className='flex flex-col'>
           <input
             name='habit'

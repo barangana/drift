@@ -1,6 +1,9 @@
+'use client'
+
 import { Habits } from '@/utils/types/types'
 import React from 'react'
 import Button from '../Button'
+import { updateCheckIn } from './habitsActions'
 
 interface HabitsCardProps {
   //   habits: Habits
@@ -16,6 +19,14 @@ const HabitsCard = ({
   streak,
   days_checkedin,
 }: HabitsCardProps) => {
+  const checkInHandler = async () => {
+    try {
+      await updateCheckIn('')
+    } catch (error) {
+      console.log('Error while user tried checking in: ' + { error })
+    }
+  }
+
   return (
     <div className='flex flex-col bg-white max-w-xl min-w-[36rem] mb-4 rounded-lg'>
       <div>
@@ -33,7 +44,7 @@ const HabitsCard = ({
         </div>
       </div>
       <div className='flex justify-evenly mb-6'>
-        <Button>Check in</Button>
+        <Button onClick={checkInHandler}>Check in</Button>
         <Button>Edit</Button>
         <Button>Delete</Button>
       </div>

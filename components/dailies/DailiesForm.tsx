@@ -20,7 +20,7 @@ const DailiesForm = ({ dailies, handleCancelOrSubmit }: DailiesFormProps) => {
   })
 
   // If they are empty, then the button to submit gets disabled
-  const isInputEmpty = formData.daily.trim() === ''
+  // const isInputEmpty = formData.daily.trim() === ''
 
   return (
     <div className='min-w-[36rem] max-w-xl p-4 my-4 bg-white border border-gray-200 rounded-lg'>
@@ -56,9 +56,7 @@ const DailiesForm = ({ dailies, handleCancelOrSubmit }: DailiesFormProps) => {
         />
         <div className='grid justify-items-end pt-2'>
           <div className='flex space-x-2'>
-            <Button type='submit' disabled={!isInputEmpty}>
-              {isEditing ? 'Save' : 'Create'}
-            </Button>
+            <Button type='submit'>{isEditing ? 'Save' : 'Create'}</Button>
             <Button onClick={handleCancelOrSubmit}>Cancel</Button>
           </div>
         </div>

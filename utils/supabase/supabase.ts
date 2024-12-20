@@ -111,6 +111,7 @@ export type Database = {
           description: string | null
           habits: string | null
           habits_id: string
+          last_checkin: string | null
           streak: number | null
           user_id: string | null
         }
@@ -120,6 +121,7 @@ export type Database = {
           description?: string | null
           habits?: string | null
           habits_id?: string
+          last_checkin?: string | null
           streak?: number | null
           user_id?: string | null
         }
@@ -129,6 +131,7 @@ export type Database = {
           description?: string | null
           habits?: string | null
           habits_id?: string
+          last_checkin?: string | null
           streak?: number | null
           user_id?: string | null
         }

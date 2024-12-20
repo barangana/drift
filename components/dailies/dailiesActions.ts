@@ -49,7 +49,7 @@ export const deleteDaily = async (dailyId: string) => {
     console.log('Error while trying to delete daily: ', { ...error })
   }
 
-  revalidatePath('/')
+  revalidatePath('/dailies')
 }
 
 export const updateDaily = async (formData: FormData, dailyId: string) => {
@@ -84,5 +84,5 @@ export const updateDaily = async (formData: FormData, dailyId: string) => {
     )
   }
 
-  revalidatePath('/')
+  revalidatePath('/dailies')
 }
